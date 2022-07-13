@@ -26,12 +26,13 @@
       >
         <div class="container-fluid py-2 mx-2 mx-sm-5">
           <span>
-            <i class="fa fa-bars  position-relative fs-4" aria-hidden="true"></i
+            <i class="fa fa-bars fs-4" aria-hidden="true"></i
           ></span>
           <img src="/images/logo.svg" class="img-fluid" alt="logo" />
 
           <div>
             <span><i class="fa fa-cart-plus cart-btn fs-2" aria-hidden="true"></i></span>
+            <!-- make position abs to adjust it into above cart -->
             <div class="cart-items position-absolute">0</div>
           </div>
         </div>
@@ -55,6 +56,7 @@
         <h1 class="my-4">Our Product</h1>
         <!-- image grid -->
         <div class="row product-container gy-4">
+          <!-- element will be added from json file throus js -->
           <!-- <div class="col-md-4 col-lg-3">
             <div class="img-container">
 
@@ -72,7 +74,10 @@
       </section>
     <!-- cart item side bar -->
     <section>
+      <!-- z index is used to bring forward -->
+      <!-- overlay act as a layer to blur other details -->
       <div class="cart-overlay ">
+        <!-- define cart -->
         <div class="cart">
           <span class="close-cart ">
             <i class="fa fa-window-close close-cart fs-2" aria-hidden="true"></i>
@@ -80,7 +85,7 @@
           <h2 >Your cart</h2>
           <!-- cart item -->
           <div class="cart-content">
-
+            <!-- import from product section -->
             <!-- <div class="cart-item row my-4">
               <div class="col-4">
                 <img src="/images/product-1.jpeg " class="img-fluid " alt="product">
@@ -98,6 +103,7 @@
               </div>
             </div> -->
           </div>
+          <!-- footer -->
             <div class="cart-footer text-center mx-4">
               <h3 > Your total: $ <span class="cart-total">0</span></h3>
               <button class="btn btn-warning px-4 fs-4 fw-semibold clear-cart">Clear cart</button>
@@ -107,6 +113,7 @@
       </div>
     </section>
     </main>
+    <!-- footer -->
   </body>
   <script src="index.js"></script>
 </html>

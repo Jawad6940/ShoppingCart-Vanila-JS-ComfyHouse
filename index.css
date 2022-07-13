@@ -22,6 +22,7 @@
     z-index: 1;
     
 }
+/* positioning cart item number */
 .cart-items{
     top: 5px;
    right: 55px;
@@ -39,6 +40,7 @@
   background: rgba(255, 255, 255, 0.8);
 }
 .img-container {
+  /* to postion the add cart button we have to get it inside img  */
     position: relative;
     overflow: hidden;
   }
@@ -53,12 +55,16 @@
     padding: 0.5rem 0.75rem;
     letter-spacing: var(--mainSpacing);
     font-weight: bold;
+    /* animation is added */
     transition: var(--mainTransition);
     transform: translateX(101%);
     cursor: pointer;
   }
   .bag-btn:hover {
     color: var(--mainWhite);
+  }
+  .img-container:hover .bag-btn {
+    transform: translateX(0);
   }
   .product h3 {
     text-transform: capitalize;
@@ -79,9 +85,7 @@
   .fa-shopping-cart {
     margin-right: 0.5rem;
   }
-  .img-container:hover .bag-btn {
-    transform: translateX(0);
-  }
+
   .cart-overlay {
     position: fixed;
     top: 0;
@@ -90,7 +94,9 @@
     height: 100%;
     transition: var(--mainTransition);
     background: rgb(240, 157, 81, 0.5);
+    /* indexing */
     z-index: 2; 
+    /* initialy hidden activate through js */
     visibility: hidden;
    
   }
@@ -105,6 +111,7 @@
     background: rgb(231, 226, 221);
     padding: 1.5rem;
     transition: var(--mainTransition);
+    /* animation */
     transform: translateX(100%);
   }
   .cart-item h4 {
@@ -134,9 +141,11 @@
   color: var(--primaryColor);
   cursor: pointer;
 }
+/* this will make the cart visible */
 .showCart{
     visibility: visible;
 }
+/* apply animation */
 .transform{
     transform: translateX(0);
 }

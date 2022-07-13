@@ -1,3 +1,4 @@
+// variables
 const cartBtn = document.querySelector(".cart-btn");
 const closeCart = document.querySelector(".close-cart");
 const clearCart = document.querySelector(".clear-cart");
@@ -8,11 +9,11 @@ const cartContent = document.querySelector(".cart-content");
 const cartTotal = document.querySelector(".cart-total");
 const productDom = document.querySelector(".product-container");
 
-//cart
+//cart array
 
 let cart = [];
 
-//button
+//button array
 let btnDom=[];
 
 //getting product
@@ -44,7 +45,9 @@ class Products {
 class UI {
   displayProduct(product) {
     // console.log(product)
+    // create a variable to store the details
     let result = "";
+
     product.forEach((item) => {
       // console.log(item)
 
@@ -61,6 +64,7 @@ class UI {
       </div>`;
     });
     // console.log(result)
+    // add the details into html below the product section
     productDom.innerHTML = result;
   }
 
@@ -68,6 +72,7 @@ class UI {
   getButtons() {
     //creat a array of all btns (add to cart btn)
     const buttons = [...document.querySelectorAll(".bag-btn")];
+    // add all button to btn array
     btnDom=buttons
     // console.log(buttons);
     //iterate through each btn
@@ -84,22 +89,25 @@ class UI {
           i.disabled=true;
           // console.log(inCart);
       }
-      //else we will add to cart and make the visibilty disabled and change name to un cart
+      //else we will add to cart and make the visibilty disabled and change name to in cart
 
       i.addEventListener("click", (event) => {
         // console.log(event);
-        //chanfe btn name
+        //change btn name
         event.target.textContent = "In cart";
         //disble
         event.target.disabled = true;
 
         //get product from products
-        //extract all details about the product based on id
+        //extract all details about the product based on id also add initial amount
         let cartItem={...Storage.getProduct(id),amount:1};
-        //add product into cart
+        //add product into cart array both existing and new
         cart=[...cart,cartItem];
+        // store the new cart in local storage
         Storage.saveCart(cart);
+        // calculate total expense according to cart item
         this.setCartValue(cart);
+        // add the cart product to cart window and make it visible in page
         this.addToCart(cartItem);
         // this.showCart()
         
@@ -108,19 +116,27 @@ class UI {
   }
 
   setCartValue(cart){
+    // calculate price
     let price=0;
+    // number of items
     let itemTot=0;
+    // map through all item
     cart.map(item=>{
+
         price+=(item.price)*(item.amount);
         itemTot+=(item.amount)
     })
+    // updated the value into html
     cartTotal.textContent= parseFloat(price.toFixed(2))
     cartItems.textContent=itemTot;
     // console.log(cartTotal);
   }
   addToCart(item){
+    // create a div 
     const div= document.createElement("div");
+    // add class for the tag
     div.classList.add("cart-item","row","my-4")
+    // create innerhtml contenet
     div.innerHTML=`
     
     <div class="col-4">
@@ -138,14 +154,17 @@ class UI {
     <p class="item-amount mb-1 fs-4">${item.amount}</p>
     <i class="fa fa-chevron-down fs-4" data-id="${item.id}" aria-hidden="true"></i>
   </div>`
+  // append the div as child of cart conntend
   cartContent.appendChild(div);
   // console.log(cartContent);
 
   }
+  // to make visible the cart
   showCart(){
     cartOverlay.classList.add("showCart")
     cartDom.classList.add("transform")
   }
+  // to store the previous details
   setupApp(){
     cart=Storage.getCart()
     // console.log(cart);
@@ -163,11 +182,13 @@ class UI {
     cartOverlay.classList.remove("showCart")
     cartDom.classList.remove("transform")
   }
+  // to acces the cart btns and parameters
   cartLogic(){
     //clear button setup
     clearCart.addEventListener("click",()=>{
       this.clearCart();
     })
+    //remove, up and down 
     cartContent.addEventListener("click",event=>{
       if(event.target.classList.contains("remove-item")){
         let removeItem= event.target;
@@ -209,6 +230,7 @@ class UI {
     }
     this.hideCart()
   }
+  // to filter the cart based on id
   removeId(id){
     console.log(cart);
     cart=cart.filter(val => val.id !== id);
