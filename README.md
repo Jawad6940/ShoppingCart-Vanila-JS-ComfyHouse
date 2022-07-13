@@ -1,3 +1,4 @@
+## Link to the website - https://shoppingcart-vanila-js.netlify.app/
 # ShoppingCart-Vanila-JS-ComfyHouse
 ### Simple shopping cart landing page created by using HTML,CSS, BootStrap, Js ;
 ## Functionality
